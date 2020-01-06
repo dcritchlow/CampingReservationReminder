@@ -1,0 +1,57 @@
+﻿@model CalendarEventsModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h2 class="display-4">Upcoming Camping Events</h2>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+            <th scope="col">Location</th>
+            <th scope="col">Dates</th>
+            <th scope="col">Camp Type</th>
+            <th scope="col">Website</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var calendarEvent in Model.CalendarEvents)
+        {
+            <tr>
+                <td>@calendarEvent.Summary</td>
+                <td>@calendarEvent.Start-@calendarEvent.End</td>
+                <td>@calendarEvent.CampType</td>
+                <td><a href="@calendarEvent.Website" target="_blank">@calendarEvent.Website</a></td>
+            </tr>
+        }
+      </tbody>
+    </table>
+
+    <h2 class="display-4">Weekends Booked</h2>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+            <th scope="col">Weekend</th>
+            <th scope="col">D Critchlow</th>
+            <th scope="col">T Critchlow</th>
+            <th scope="col">E Critchlow</th>
+            <th scope="col">Hardcastle</th>
+            <th scope="col">Jeppson</th>
+            <th scope="col">Averett</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+            <td>05/01-05/03</td>
+            <td></td>
+            <td><img src="~/assets/img/check-box.svg" alt="" width="32" height="32" title="checkbox"></td>
+            <td></td>
+            <td><img src="~/assets/img/check-box.svg" alt="" width="32" height="32" title="checkbox"></td>
+            <td><img src="~/assets/img/check-box.svg" alt="" width="32" height="32" title="checkbox"></td>
+            <td></td>
+        </tr>
+      </tbody>
+    </table>
+</div>
