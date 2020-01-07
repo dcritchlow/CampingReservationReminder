@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
+
 namespace EventQueryService.DTO
 {
     public class CalendarEvent
@@ -8,6 +9,7 @@ namespace EventQueryService.DTO
         public string End { get; set; }
         public string CampType { get; set; }
         public string Website { get; set; }
+        public List<Camper> Campers { get; set; }
 
         public override string ToString() => $"{Summary} {Start} - {End} ({CampType}) {Website}";
     }

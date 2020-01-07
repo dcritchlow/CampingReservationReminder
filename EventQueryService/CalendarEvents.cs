@@ -27,13 +27,15 @@ namespace EventQueryService
                 var endDate = eventItem.End.DateTime?.ToString("MM/dd") ?? DateTime.Parse(eventItem.End.Date).ToString("MM /dd");
                 var campType = eventItem.Description.GetCampType();
                 var website = eventItem.Description.GetWebsite();
+                var campers = eventItem.Description.GetCampers();
                 var calendarEvent = new CalendarEvent
                 {
                     Summary = eventItem.Summary.GetDisplayTitle(),
                     Start = startDate,
                     End = endDate,
                     CampType = campType,
-                    Website = website
+                    Website = website,
+                    Campers = campers
                 };
                 calendarEventList.Add(calendarEvent);
             }

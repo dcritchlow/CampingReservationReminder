@@ -406,4 +406,4 @@ ASALocalRun/
 
 # Credentials
 credentials.json
-token.json
+token.json/

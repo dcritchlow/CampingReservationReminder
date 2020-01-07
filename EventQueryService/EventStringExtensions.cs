@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using EventQueryService.DTO;
+
 namespace EventQueryService
 {
     public static class EventStringExtensions
@@ -49,6 +52,12 @@ namespace EventQueryService
                 //}
             }
             return website;
+        }
+
+        public static List<Camper> GetCampers(this string description)
+        {
+            var campers = Campers.FindNames(description);
+            return campers;
         }
 
         private static string StripTagsCharArray(this string source)

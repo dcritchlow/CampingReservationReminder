@@ -43,6 +43,16 @@
         </tr>
       </thead>
       <tbody>
+        @foreach (var calendarEvent in Model.CalendarEvents)
+        {
+            <tr>
+                <td>@calendarEvent.Start-@calendarEvent.End</td>
+                @foreach (var camper in calendarEvent.Campers)
+                {
+                    <td><img src="~/assets/img/check-box.svg" alt="" width="32" height="32" title="checkbox"></td>
+                }
+            </tr>
+        }
         <tr>
             <td>05/01-05/03</td>
             <td></td>
