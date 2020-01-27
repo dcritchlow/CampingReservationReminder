@@ -32,36 +32,39 @@
 
     <table class="table table-striped">
       <thead>
-        <tr>
-            <th scope="col">Weekend</th>
-            <th scope="col">D Critchlow</th>
-            <th scope="col">T Critchlow</th>
-            <th scope="col">E Critchlow</th>
-            <th scope="col">Hardcastle</th>
-            <th scope="col">Jeppson</th>
-            <th scope="col">Averett</th>
-        </tr>
+          <tr>
+              <th scope="col">Weekend</th>
+              @foreach (var approvedCamper in Model.ApprovedCampers)
+              {
+                  <th scope="col">@approvedCamper</th>
+              }
+              
+          </tr>
       </thead>
       <tbody>
         @foreach (var calendarEvent in Model.CalendarEvents)
         {
-            <tr>
-                <td>@calendarEvent.Start-@calendarEvent.End</td>
-                @foreach (var camper in calendarEvent.Campers)
-                {
-                    <td><img src="~/assets/img/check-box.svg" alt="" width="32" height="32" title="checkbox"></td>
-                }
-            </tr>
+          <tr>
+              <td>@calendarEvent.Start-@calendarEvent.End</td>
+
+              @for (var i = 0; i <= Model.ApprovedCampers.Count - 1; i++)
+              {
+                  var availableCampers = calendarEvent.Campers.Count > 0;
+                  var nameMatches = calendarEvent.Campers.Where(x => x.Name == Model.ApprovedCampers[i]);
+                  if (availableCampers && nameMatches.Any())
+                  {
+                      <td><img src="~/assets/img/check-box.svg" alt="" width="32" height="32" title="checkbox"></td>
+                  }
+                  else
+                  {
+                      <td></td>
+                  }
+
+              }
+
+
+          </tr>
         }
-        <tr>
-            <td>05/01-05/03</td>
-            <td></td>
-            <td><img src="~/assets/img/check-box.svg" alt="" width="32" height="32" title="checkbox"></td>
-            <td></td>
-            <td><img src="~/assets/img/check-box.svg" alt="" width="32" height="32" title="checkbox"></td>
-            <td><img src="~/assets/img/check-box.svg" alt="" width="32" height="32" title="checkbox"></td>
-            <td></td>
-        </tr>
       </tbody>
     </table>
 </div>

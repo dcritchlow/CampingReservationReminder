@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <Folder Include="DTO\" />
+    <Folder Include="AvailableWeekends\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="credentials.json">

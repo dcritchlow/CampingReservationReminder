@@ -38,18 +38,21 @@ namespace EventQueryService
 
         public static string GetWebsite(this string description)
         {
-            var websiteExists = description.Contains("url");
+            var desc = description.StripTagsCharArray();
+            var websiteExists = desc.Contains("url");
             var website = string.Empty;
             if (websiteExists)
             {
-                var startIndex = description.IndexOf(":", StringComparison.InvariantCulture);
-                website = description.Substring(startIndex + 1).StripTagsCharArray();
-             
-                //var indexOfUrlLink = website.IndexOf('<');
-                //if (indexOfUrlLink != -1)
-                //{
-                //    website = website.Substring(0, indexOfUrlLink);
-                //}
+                var startIndex = desc.IndexOf(":", StringComparison.InvariantCulture);
+                var endIndex = desc.IndexOf("campers:", StringComparison.InvariantCulture);
+                if (endIndex > 0)
+                {
+                    website = desc.Substring(startIndex + 1, endIndex - startIndex - 1);
+                }
+                else
+                {
+                    website = desc.Substring(startIndex + 1);
+                }
             }
             return website;
         }

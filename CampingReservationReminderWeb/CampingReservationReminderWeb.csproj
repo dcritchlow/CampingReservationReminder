@@ -15,17 +15,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Remove="credentials.json" />
-    <Content Remove="wwwroot\assets\img\check-box.svg" />
-    <Content Remove="wwwroot\lib\check-box.svg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="credentials.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="wwwroot\assets\img\check-box.svg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="wwwroot\lib\check-box.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
