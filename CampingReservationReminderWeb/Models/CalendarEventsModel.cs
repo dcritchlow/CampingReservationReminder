@@ -7,11 +7,14 @@ namespace CampingReservationReminderWeb.Models
     {
         public IEnumerable<CalendarEvent> CalendarEvents { get; }
         public IEnumerable<Camper> Campers { get; }
-        public List<string> ApprovedCampers { get; } = EventQueryService.DTO.ApprovedCampers.List;
+        public List<string> ApprovedCampers { get; }
+        public IEnumerable<Weekend> Weekends { get; }
 
-        public CalendarEventsModel(IEnumerable<CalendarEvent> events)
+        public CalendarEventsModel(EventQueryResult result)
         {
-            CalendarEvents = events;
+            CalendarEvents = result.Events;
+            Weekends = result.Weekends;
+            ApprovedCampers = result.ApprovedCampers;
         }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CampingReservationReminderWeb.Models;
@@ -21,8 +17,8 @@ namespace CampingReservationReminderWeb.Controllers
 
         public IActionResult Index()
         {
-            var calendarEvents = new EventQuery().GetEvents();
-            var model = new CalendarEventsModel(calendarEvents);
+            var result = new EventQuery().GetEvents();
+            var model = new CalendarEventsModel(result);
             return View(model);
         }
 

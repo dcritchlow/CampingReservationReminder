@@ -42,27 +42,41 @@
           </tr>
       </thead>
       <tbody>
-        @foreach (var calendarEvent in Model.CalendarEvents)
+        @foreach (var weekend in Model.Weekends)
         {
+          var dateNotFound = true;
           <tr>
-              <td>@calendarEvent.Start-@calendarEvent.End</td>
-
+            <td>@weekend.ToString()</td>
+          @foreach (var calendarEvent in Model.CalendarEvents)
+          {
+            
+            @if(calendarEvent.StartDateTime == weekend.Start)
+            {
               @for (var i = 0; i <= Model.ApprovedCampers.Count - 1; i++)
               {
-                  var availableCampers = calendarEvent.Campers.Count > 0;
-                  var nameMatches = calendarEvent.Campers.Where(x => x.Name == Model.ApprovedCampers[i]);
-                  if (availableCampers && nameMatches.Any())
-                  {
-                      <td><img src="~/assets/img/check-box.svg" alt="" width="32" height="32" title="checkbox"></td>
-                  }
-                  else
-                  {
-                      <td></td>
-                  }
-
+                var availableCampers = calendarEvent.Campers.Count > 0;
+                var nameMatches = calendarEvent.Campers.Where(x => x.Name == Model.ApprovedCampers[i]);
+                if (availableCampers && nameMatches.Any())
+                {
+                    <td><img src="~/assets/img/check-box.svg" alt="" width="32" height="32" title="checkbox"></td>
+                }
+                else
+                {
+                  <td></td>
+                }
               }
-
-
+              dateNotFound = false;
+              break;
+            }
+            
+          }
+          @if(dateNotFound)
+          {
+            @for (var i = 0; i <= Model.ApprovedCampers.Count - 1; i++)
+            {
+              <td></td>
+            }
+          }
           </tr>
         }
       </tbody>

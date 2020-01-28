@@ -8,9 +8,9 @@ namespace ConsoleApp
         static void Main(string[] args)
         {
             var eventQueryService = new EventQuery();
-            var eventsList = eventQueryService.GetEvents();
+            var result = eventQueryService.GetEvents();
 
-            foreach(var calendarEvent in eventsList)
+            foreach(var calendarEvent in result.Events)
             {
                 Console.WriteLine(calendarEvent);
             }

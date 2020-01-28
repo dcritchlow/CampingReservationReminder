@@ -3,15 +3,25 @@ using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
 using Google.Apis.Services;
 using EventQueryService.DTO;
-using System.Collections.Generic;
+using Google.Apis.Auth.OAuth2;
+using EventQueryService.AvailableWeekends;
 
 namespace EventQueryService
 {
     public class EventQuery
     {
-        public IEnumerable<CalendarEvent> GetEvents()
+        public EventQueryResult GetEvents()
         {
-            var credential = new CalendarCredential().GetCredential();
+            var scopes = new []{  
+                CalendarService.Scope.Calendar,  
+                CalendarService.Scope.CalendarEvents,  
+                CalendarService.Scope.CalendarEventsReadonly  
+            }; 
+            
+            var value = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS");
+            var credential = GoogleCredential
+                .GetApplicationDefault()
+                .CreateScoped(scopes);
             var service = new CalendarService(new BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential,
@@ -28,7 +38,15 @@ namespace EventQueryService
             Events events = request.Execute();
 
             var eventList = new CalendarEvents().Items(events);
-            return eventList;
+            var weekends = new FridayToSundayWeekend().Weekends();
+            var approvedCampers = new ApprovedCampers().List;
+            var result = new EventQueryResult
+            {
+                Events = eventList,
+                Weekends = weekends,
+                ApprovedCampers = approvedCampers
+            };
+            return result;
         }
     }
 }

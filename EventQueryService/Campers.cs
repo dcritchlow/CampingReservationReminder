@@ -39,7 +39,8 @@ namespace EventQueryService
             var campers = new List<Camper>();
             foreach (var camper in listedCampers)
             {
-                if (!ApprovedCampers.List.Contains(camper.Trim()))
+                var approvedCampers = new ApprovedCampers().List;
+                if (!approvedCampers.Contains(camper.Trim()))
                 {
                     continue;
                 }

@@ -13,7 +13,6 @@ namespace EventQueryService.DTO
         public string CampType { get; set; }
         public string Website { get; set; }
         public List<Camper> Campers { get; set; }
-        
 
         public override string ToString() => $"{Summary} {Start} - {End} ({CampType}) {Website}";
     }

@@ -5,7 +5,7 @@ namespace EventQueryService.DTO
 {
     public class ApprovedCampers
     {
-        public static List<string> List = new List<string>
+        public List<string> List = new List<string>
         {
             "D Critchlow",
             "E Critchlow",
